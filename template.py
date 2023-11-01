@@ -20,21 +20,25 @@ list_of_files = [
     "params.yaml",
     "requirements.txt",
     "setup.py",
-    "research/trails.ipynb"
+    "research/trails.ipynb",
+    "templates/index.html"
 ]
 
-for file_path in list_of_files:
-    file_path = Path(file_path)
-    file_dir,file_name = os.path.split(file_path)
+for filepath in list_of_files:
+    filepath = Path(filepath)
+    filedir, filename = os.path.split(filepath)
 
-    if file_dir != "": #to check if the variable have a directory name or not
-        os.makedirs(file_dir,exist_ok=True)
-        logging.info(f"Creating directory : {file_dir} for the file : {file_name}")
 
-    if (not os.path.exists(file_path)) or (os.path.getsize(file_path) == 0):
-        with open(file_path, "w") as f:
+    if filedir !="":
+        os.makedirs(filedir, exist_ok=True)
+        logging.info(f"Creating directory; {filedir} for the file: {filename}")
+
+    if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
+        with open(filepath, "w") as f:
             pass
-            logging.info(f"Creating empty file : {file_path}")
+            logging.info(f"Creating empty file: {filepath}")
+
+
     else:
-        logging.info(f"{file_name} is already exist")
+        logging.info(f"{filename} is already exists")
 
