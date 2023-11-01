@@ -24,21 +24,18 @@ list_of_files = [
     "templates/index.html"
 ]
 
-for filepath in list_of_files:
-    filepath = Path(filepath)
-    filedir, filename = os.path.split(filepath)
+for file_path in list_of_files:
+    file_path = Path(file_path)
+    file_dir,file_name = os.path.split(file_path)
 
+    if file_dir != "": #to check if the variable have a directory name or not
+        os.makedirs(file_dir,exist_ok=True)
+        logging.info(f"Creating directory : {file_dir} for the file : {file_name}")
 
-    if filedir !="":
-        os.makedirs(filedir, exist_ok=True)
-        logging.info(f"Creating directory; {filedir} for the file: {filename}")
-
-    if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
-        with open(filepath, "w") as f:
+    if (not os.path.exists(file_path)) or (os.path.getsize(file_path) == 0):
+        with open(file_path, "w") as f:
             pass
-            logging.info(f"Creating empty file: {filepath}")
-
-
+            logging.info(f"Creating empty file : {file_path}")
     else:
-        logging.info(f"{filename} is already exists")
+        logging.info(f"{file_name} is already exist")
 
